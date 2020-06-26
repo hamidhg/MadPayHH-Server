@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MadPayHH.Data.DatabaseContext
 {
-     class MadpayHHDbContext:DbContext
+   public  class MadpayHHDbContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

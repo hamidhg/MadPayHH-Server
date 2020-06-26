@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MadPayHH.Repo.Class;
 using Microsoft.EntityFrameworkCore;
 
-namespace MadPayHH.Data.Infrastructure
+namespace MadPayHH.Repo.Infrastructure
 {
     public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new()
 
@@ -13,24 +14,42 @@ namespace MadPayHH.Data.Infrastructure
         protected readonly DbContext _db;
         public UnitOfWork()
         {
-            _db=new TContext();
+            _db = new TContext();
         }
 
         #endregion
 
         #region Save
 
-       public void Save()
-       {
-           _db.SaveChanges();
-       }
+
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
 
         public Task<int> SaveAsync()
         {
             return _db.SaveChangesAsync();
         }
         #endregion
-        
+
+        #region UserRepository
+        private UserRepository userRepository;
+        public UserRepository UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                {
+                    userRepository = new UserRepository(_db);
+                }
+
+                return userRepository;
+            }
+        }
+        #endregion
+
+
         #region Dispose
 
         private bool disposed = false;
@@ -38,9 +57,9 @@ namespace MadPayHH.Data.Infrastructure
         {
             if (!disposed)
             {
-                if(disposing==true)
-                { 
-                _db.Dispose();
+                if (disposing == true)
+                {
+                    _db.Dispose();
                 }
             }
 

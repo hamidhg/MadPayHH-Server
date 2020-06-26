@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using MadPayHH.Repo.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace MadPayHH.Data.Infrastructure
+namespace MadPayHH.Repo.Infrastructure
 {
-    public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
+    public abstract class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {
         #region Constructor
         private readonly DbContext _dbContext;

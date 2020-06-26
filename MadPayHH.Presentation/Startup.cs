@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MadPayHH.Data.DatabaseContext;
+using MadPayHH.Repo.Infrastructure;
+using MadPayHH.Services.Auth.Repositories.Interface;
+using MadPayHH.Services.Auth.Repositories.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +30,11 @@ namespace MadPayHH.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+               
             services.AddCors();
+            services.AddScoped<IUnitOfWork<MadpayHHDbContext>, UnitOfWork<MadpayHHDbContext>>();
+            services.AddScoped<IAuthService, AuthService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
