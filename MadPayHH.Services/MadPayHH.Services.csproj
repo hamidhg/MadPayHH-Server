@@ -8,5 +8,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MadPayHH.Repo\MadPayHH.Repo.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="Site\App\" />
+  </ItemGroup>
  
 </Project>

@@ -9,7 +9,9 @@ namespace MadPayHH.Repo.Repositories.Interface
 {
    public interface IUserRepository:IRepository<User>
    {
-       Task<User> UserExists(string username);
+       Task<bool> UserExists(string username);
+       //Task<User> LoginUserExists(string username);
 
-    }
+
+   }
 }

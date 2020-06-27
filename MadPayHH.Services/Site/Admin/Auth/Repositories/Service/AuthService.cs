@@ -6,9 +6,10 @@ using MadPayHH.Common.Helpers;
 using MadPayHH.Data.DatabaseContext;
 using MadPayHH.Data.Models;
 using MadPayHH.Repo.Infrastructure;
-using MadPayHH.Services.Auth.Repositories.Interface;
 
-namespace MadPayHH.Services.Auth.Repositories.Service
+using MadPayHH.Services.Site.Admin.Auth.Repositories.Interface;
+
+namespace MadPayHH.Services.Site.Admin.Auth.Repositories.Service
 {
    public class AuthService:IAuthService
    {
@@ -32,9 +33,17 @@ namespace MadPayHH.Services.Auth.Repositories.Service
             return user;
         }
 
-        public Task<User> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await  _db.UserRepository.GetAsync(u => u.Username == username);
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+            return user;
         }
 
 

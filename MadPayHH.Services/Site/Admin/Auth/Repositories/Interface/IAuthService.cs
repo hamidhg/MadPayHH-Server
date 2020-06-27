@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MadPayHH.Data.Models;
 
-namespace MadPayHH.Services.Auth.Repositories.Interface
+namespace MadPayHH.Services.Site.Admin.Auth.Repositories.Interface
 {
    public  interface IAuthService
     {

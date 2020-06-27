@@ -23,9 +23,18 @@ namespace MadPayHH.Repo.Class
 
    
 
-        public Task<User> UserExists(string username)
+        public async Task<bool> UserExists(string username)
         {
-            throw new NotImplementedException();
+            if (await GetAsync(u => u.Username == username)!=null)
+                return true;
+            else
+                return false;
+
         }
+
+        //public Task<User> LoginUserExists(string username)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
