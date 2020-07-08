@@ -41,7 +41,7 @@ namespace MadPayHH.Services.Site.Admin.Auth.Repositories.Service
                 return null;
             }
 
-            if (Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
             return user;
         }
